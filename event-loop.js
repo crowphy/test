@@ -7,18 +7,18 @@ setTimeout(function to1() {
 setTimeout(function to3() {
     console.log('to3')
 }, 10)
-// setImmediate(function() {
-//     console.log('im1')
-// })
+setImmediate(function() {
+    console.log('im1')
+})
 console.log('o1')
-// new Promise(function(reslove) {
-//     console.log('p1')
-//     reslove('data')
-//     console.log('p2')
-// }).then(function(data) {
-//     console.log('th1', data)
-// })
-// process.nextTick(function() {
-//     console.log('n1')
-// })
+new Promise(function(reslove) {
+    console.log('p1')
+    reslove('data')
+    console.log('p2')
+}).then(function(res) {
+    console.log('th1')
+})
+process.nextTick(function() {
+    console.log('n1')
+})
 // o1 p1 p2 n1 th1 to1 im1 to3 to2
