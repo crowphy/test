@@ -1,31 +1,31 @@
 
 function Bird() {
 
-    var actions = []
+    const actions = []
     
     Bird.sing = function() {
-        actions.push(function() {
+        actions.push(function(song) {
             console.log('sing');
-            if(actions.length > 0) actions.shift();
+            if(actions.length > 0) 
+                actions.shift();
             // console.log(actions);
             if(actions.length > 0) actions[0]();
         });
         return this;   
     }
     
-    // eat = function() {
+    // Bird.eat = function() {
     //     console.log('eat')
     // }
     Bird.sleepLast = function(time = 0) {
         setTimeout(function() {
             actions.push(function() {
-                setTimeout(function() {
-                    // console.log(actions)
-                    console.log(`slepp ${time} s`);
-                    if(actions.length > 0) actions.shift();
-                    // console.log(actions);
+                // setTimeout(function() {
+                    console.log(`sleppLast ${time} s`);
+                    if(actions.length > 0)
+                        actions.shift();
                     if(actions.length > 0) actions[0]();
-                }, time * 1000)
+                // }, time * 1000)
             });
             actions[0]()
         });
@@ -33,4 +33,4 @@ function Bird() {
     }
     return Bird;
 }
-Bird().sing().sleepLast(3).sing().sleepLast(2)
+Bird().sing('in').sleepLast(1).sing('ou').sleepLast(2)
