@@ -20,12 +20,14 @@ function Bird() {
     Bird.sleepLast = function(time = 0) {
         setTimeout(function() {
             actions.push(function() {
-                // setTimeout(function() {
-                    console.log(`sleppLast ${time} s`);
+                // console.log(`开始睡觉 ${time} s`);
+                setTimeout(function() {
+                    console.log(`睡了 ${time} s`);
                     if(actions.length > 0)
                         actions.shift();
-                    if(actions.length > 0) actions[0]();
-                // }, time * 1000)
+                    if(actions.length > 0) 
+                        actions[0]();
+                }, time * 1000)
             });
             actions[0]()
         });
@@ -33,4 +35,4 @@ function Bird() {
     }
     return Bird;
 }
-Bird().sing('in').sleepLast(1).sing('ou').sleepLast(2)
+Bird().sing().sleepLast(3).sing().sleepLast(4)
