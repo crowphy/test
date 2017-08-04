@@ -21,3 +21,21 @@ Person.prototype.sayAge = function() {
 
 var c1 = new Child('Mike', 6)
 c1.sayAge();
+
+function inheritPrototype(superType, subType) {
+    var prototype = Object.create(superType.prototype);
+    subType.prototype = prototype;
+    subType.prototype.constructor = subType;
+}
+
+function Man(wife, name) {
+    Person.call(this, name);
+    this.wife = wife;
+}
+inheritPrototype(Person, Man);
+Man.prototype.who = function() {
+    console.log(this.wife);
+}
+var m = new Man('She', 'C');
+m.who();
+m.speak();
