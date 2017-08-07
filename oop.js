@@ -1,5 +1,6 @@
-function Person(name) {
+function Person(name, age) {
     this.name = name;
+    this.age = age;
 }
 Person.prototype.speak = function() {
     console.log(this.name)
@@ -10,7 +11,7 @@ p1.speak()
 function Child(name, age) {
     this.age = age;
     // this.name = name;
-    Person.call(this, name);
+    Person.call(this, name, 7);
 }
 
 Child.prototype = new Person();
