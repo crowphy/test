@@ -1,8 +1,12 @@
-let str = '12345678';
-const regExp = /(\s)(?=(\s){3}?)/;
-str.replace(regExp, function($0, $1) {
-    console.log($0)
-    console.log($1)
-    return 'a' + $1 + 'bg'
+var str = '5678320034';
+// var regExp = /\d{1,3}(?=(\d{3})+$)/g;
+var regExp = /(\d{3})+/
+console.log(regExp.test(str))
+var res = str.replace(regExp, function(match, p1, p2, p3) {
+    console.log(match)
+    // console.log(p1)
+    console.log(p2)
+    console.log(p1)
+    return match + ','
 })
-console.log(str)
+console.log(res)
