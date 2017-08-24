@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+    <html>
+      <head>
+        <script>
+          window.onload = function () {
+            console.log(''+(+new Date)+': Onload fired');
+          };
+     
+          document.onreadystatechange = function () {
+            console.log(''+(+new Date)+': Ready state changed:', document.readyState); 
+            if (document.readyState == "complete") { 
+              console.log(''+(+new Date)+': Ready = Complete'); 
+            }
+          };
+     
+          window.addEventListener("DOMContentLoaded", function () {
+            console.log(''+(+new Date)+': DOM Content Loaded');
+          });
+        </script>
+      </head>
+      <body>
+        <h1>Test</h1>
+        <p>To see the difference between <code>onload</code> and <code>readyState == "complete"</code>
+          and <code>DOMContentLoaded</code>.</p>
+        <p>Run me with Firebug or Chrome Dev Tools, and cache disabled, and watch the console.</p>
+        <hr />
+        <img src="http://i.imgur.com/owuVS.gif" />
+        <img src="http://i.imgur.com/1sE1n.jpg" />
+        <img src="http://i.imgur.com/A2s1e.jpg" />
+        <img src="http://i.imgur.com/BaFin.jpg" />
+      </body>
+    </html> 
