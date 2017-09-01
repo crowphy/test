@@ -723,3 +723,17 @@ Bird().eat().sing().eat().sleepLast(); */
     console.log('callback')
 })
 console.log('other...') */
+'use strict';
+var a = 20;
+function foo() {
+  console.log(this.a);
+}
+function bar(fn) {
+  fn();
+}
+
+var obj = {
+  a: 10,
+  getA: foo
+}
+bar(obj.getA);
