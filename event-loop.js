@@ -2,12 +2,12 @@ setTimeout(function to1() {
     console.log('to1')
     setTimeout(function to2(){
         console.log('to2')
-    }, 100)
-}, 0)
+    }, 0)
+}, 100)
 // console.log('test')
 setTimeout(function to3() {
     console.log('to3')
-}, 103)
+}, 104)
 // setImmediate(function() {
 //     console.log('im1')
 // })
