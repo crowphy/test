@@ -4,11 +4,11 @@ setTimeout(function to1() {
     setTimeout(function to2(){
         console.log('to2')
     }, 0)
-}, 10)
+}, 100)
 // console.log('test')
 setTimeout(function to3() {
     console.log('to3')
-}, 20)
+}, 104)
 // setImmediate(function() {
 //     console.log('im1')
 // })
