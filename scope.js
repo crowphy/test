@@ -9,3 +9,10 @@ foo.bar();
   console.log(123)
   foo.bar()
 })()
+
+var a = 123
+setTimeout(function() {
+  console.log(a)
+  a = 213
+})
+a = 321

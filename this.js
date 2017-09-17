@@ -1,16 +1,16 @@
-/* var a = 20;
+ 
 function foo() {
   console.log(this.a);
 }
 function bar(fn) {
   fn();
 }
-
+var a = 20;
 var obj = {
   a: 10,
   getA: foo
 }
-bar(obj.getA); */
+bar(obj.getA); 
 /* var a = 20;
 var obj = {
     a: 10,
@@ -23,7 +23,7 @@ var obj = {
 console.log(obj.c);
 console.log(obj.fn()); */
 
-var obj = {
+/* var obj = {
   a: 10,
   fn: function() {
     console.log(this.a);
@@ -32,4 +32,4 @@ var obj = {
     })()
   }
 }
-obj.fn()
+obj.fn() */

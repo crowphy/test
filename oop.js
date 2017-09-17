@@ -1,4 +1,4 @@
-function Person(name, age) {
+/* function Person(name, age) {
     this.name = name;
     this.age = age;
 }
@@ -39,4 +39,10 @@ Man.prototype.who = function() {
 }
 var m = new Man('She', 'C');
 m.who();
-m.speak();
+m.speak(); */
+
+function Person() {
+
+}
+var p = new Person()
+console.log(p.constructor)
