@@ -9,23 +9,27 @@
             .parent {
                 width: 320px;
                 border: 1px solid #f60;
+                height: 200px;
                 /*2.overflow  */
                 /* overflow: auto; */
             }
             .child {
                 width: 100px;
-                height: 100px;
+                height: 50%;
+                margin-top: 10%;
+                padding-bottom: 10%;
+                border-bottom: 10% sloid #fff;
                 background: #444;
                 /* display: inline-block; */
             }
             .left {
-                float: left;
+                /* float: left; */
             }
             .center {
                  margin: 0 auto;
             }
             .right {
-                float: right;
+                /* float: right; */
             }
             /*3.:after  */
             .parent:after {
@@ -46,11 +50,19 @@
     <!--二三列布局及清除浮动  -->
         <div class="parent" style="border: 1px solid #f60;">
             <div class="child left"></div>
-            <div class="child right"></div>
+            <!-- <div class="child right"></div> -->
             <!--1.  -->
-             <div class="clear"></div> 
+             <!-- <div class="clear"></div> -->
             <!-- <div class="child center"></div> -->
         </div>
     </body>
-    <script src="test.js"></script>
+    <script src="jquery.js"></script>
+    <script>
+        $.ajax({
+            url: 'https://www.pingan.com/cms-tmplt/portalJsonpController.do?method=articleList&channelId=3601',
+            success: function (data) {
+                console.log('data:', data)
+            }
+        })
+    </script>
 </html>
