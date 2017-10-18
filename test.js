@@ -737,15 +737,26 @@ var obj = {
   getA: foo
 }
 bar(obj.getA); */
-function foo() {
-  console.log(this.a);
+// function foo() {
+//   console.log(this.a);
+// }
+// function bar(fn) {
+//   fn();
+// }
+// var obj = {
+//   a: 10,
+//   getA: foo
+// }
+// bar(obj.getA);
+// var a = 20;
+for(var i = 0; i < 4; i++) {
+    setTimeout(
+        print(i)
+    , 1000 * i)   
 }
-function bar(fn) {
-  fn();
+function print(i) {
+    return function() {
+        console.log(i)
+    }
+    
 }
-var obj = {
-  a: 10,
-  getA: foo
-}
-bar(obj.getA);
-var a = 20;
