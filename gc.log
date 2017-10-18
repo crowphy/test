@@ -1,0 +1,2 @@
+[43887:0x102801c00]       54 ms: Scavenge 3.6 (7.0) -> 3.3 (8.0) MB, 0.9 / 0.0 ms  allocation failure 
+[43887:0x102801c00]       65 ms: Scavenge 3.8 (8.0) -> 3.6 (9.0) MB, 1.2 / 0.0 ms  allocation failure 

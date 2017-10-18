@@ -13,9 +13,9 @@ const http = require('http')
 const iconv = require('iconv-lite')
 const url = 'http://www.pingan.com/cms-tmplt/portalJsonpController.do?method=articleList&channelId=3601'
 let data
-async function getData (url) {
-  await http.get(url, function (res) {
-    console.log(res)
+function getData (url) {
+  http.get(url, function (res) {
+    console.log(res.on)
     var arrBuf = []
     var bufLength = 0
     res.on('data', function(chunk){
@@ -35,4 +35,25 @@ async function getData (url) {
   // console.log(res.data.articleList[0].content.articleTitle)
 }
 getData(url)
-console.log(data)
+// console.log(data)
+
+function get () {
+  axios.get(url, {
+    transformResponse: [function (res) {
+      console.log(JSON.parse(res).articleList[0].content.articleTitle)
+      res.on('data', function(chunk){
+        arrBuf.push(chunk)
+        bufLength += chunk.length
+    })
+    .on('end', function(){
+        // arrBuf是个存byte数据块的数组，byte数据块可以转为字符串，数组可不行
+        // bufferhelper也就是替你计算了bufLength而已 
+        var chunkAll = Buffer.concat(arrBuf, bufLength)   
+        var strJson = iconv.decode(chunkAll, 'gb18030') // 汉字不乱码
+        // console.log('str:', JSON.parse(strJson).articleList[0].content.articleTitle)
+        data = JSON.parse(strJson).articleList[0].content.articleTitle
+        return JSON.parse(strJson).articleList[0].content.articleTitle
+    })
+    }]
+  })
+}
