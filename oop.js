@@ -44,5 +44,12 @@ m.speak(); */
 function Person() {
 
 }
-var p = new Person()
-console.log(p.constructor)
+function Child() {
+    // this.base = Person
+    // this.base()
+    Person.call(this)
+}
+Child.prototype = Object.create(Person.prototype)
+Child.prototype.constructor = Child
+var p = new Child()
+console.log(p instanceof Child, p instanceof Person, Child.prototype.constructor)
