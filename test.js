@@ -749,14 +749,16 @@ bar(obj.getA); */
 // }
 // bar(obj.getA);
 // var a = 20;
-for(var i = 0; i < 4; i++) {
-    setTimeout(
-        print(i)
-    , 1000 * i)   
-}
-function print(i) {
-    return function() {
-        console.log(i)
-    }
+// for(var i = 0; i < 4; i++) {
+//     setTimeout(
+//         print(i)
+//     , 1000 * i)   
+// }
+// function print(i) {
+//     return function() {
+//         console.log(i)
+//     }
     
-}
+// }
+let str = '123456.88'
+let regExp = /(d){} /
