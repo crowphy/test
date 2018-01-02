@@ -749,14 +749,35 @@ bar(obj.getA); */
 // }
 // bar(obj.getA);
 // var a = 20;
-for(var i = 0; i < 4; i++) {
-    setTimeout(
-        print(i)
-    , 1000 * i)   
-}
-function print(i) {
-    return function() {
-        console.log(i)
-    }
+// for(var i = 0; i < 4; i++) {
+//     setTimeout(
+//         print(i)
+//     , 1000 * i)   
+// }
+// function print(i) {
+//     return function() {
+//         console.log(i)
+//     }
     
-}
+// }
+
+// var func = (function(a) {
+//     this.a = a;
+//     return function(a) {
+//         a += this.a;
+//         return a;
+//     }
+// })(function(a, b) {
+//     return a;
+// }(1, 2))
+// func(4)
+
+// var arr = [];
+// arr[0]>=0?arr.shift():arr[0]=1
+// console.log(arr);
+
+var a = new Array(100)
+a.map((i) => {
+    console.log(i);
+})
+// console.log(a)
