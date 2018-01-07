@@ -60,10 +60,10 @@
         <!-- <script src="generator.js"></script> -->
     </body>
     <!-- <script src="jquery.js"></script> -->
-    <script src="throttle.js"></script>
+    <script src="throttle-2.js"></script>
     <script>
         var ele = document.querySelector('.parent');
-        ele.addEventListener('click', throttle(handler, 5000, true));
+        ele.addEventListener('click', throttle(handler, 1000, true));
         // ele.addEventListener('mousemove', debounce(handler1, 1000, true));
         function handler(e) {
             console.log(e);
