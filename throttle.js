@@ -33,7 +33,16 @@ function throttle(fn, delay = 300, immediate = true) {
           }, delay);
           fn.apply(ctx, args);
           last = +new Date();
-        }, delay);
+        }, 0);
+        var now = +new Date();
+        if(now - last < delay) {
+          clearTimeout(timer);
+          timer = null;
+          firstTimer = setTimeout(() => {
+            first = immediate;
+          }, delay);
+          console.log(timer, first);
+        }
       }
     }
   }
