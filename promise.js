@@ -45,7 +45,8 @@
 //   console.log(data)
 // })
 function PromiseB(executor) {
-  var callbacks = []
+  var callbacks = [],
+      res = []
   this.then = function(callback) {
     callbacks.push(callback)
     return this
@@ -53,13 +54,18 @@ function PromiseB(executor) {
   executor(resolve)
   function resolve(value) {
     setTimeout(() => {
-      var fn = callbacks.shift()
-      fn(value)
+      res[0] = callbacks[0](value)
+      for(let i = 1; i < callbacks.length; i++) {
+        res[i] = callbacks[i](res[i - 1])
+      }
     })
   }
 }
-var b = new PromiseB(function(resolve, reject) {
+new PromiseB(function(resolve, reject) {
   resolve('hello')
-}).then(function (data) {
+}).then(function(data) {
+  console.log(data)
+  return 'world'
+}).then(function(data) {
   console.log(data)
 })
