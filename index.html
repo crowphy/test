@@ -58,15 +58,23 @@
         </div>
         <!-- <a href="https://ww.baidu.com">aaaa</a>
         Counter: <span id="counter"></span>
-        <script src="generator.js"></script> -->
+        <!-- <script src="generator.js"></script> -->
     </body>
-    <!-- <script src="jquery.js"></script>
+    <!-- <script src="jquery.js"></script> -->
+    <script src="throttle-2.js"></script>
     <script>
-        $.ajax({
-            url: 'https://www.pingan.com/cms-tmplt/portalJsonpController.do?method=articleList&channelId=3601',
-            success: function (data) {
-                console.log('data:', data)
-            }
-        })
-    </script> -->
+        var ele = document.querySelector('.parent');
+        ele.addEventListener('click', throttle(handler, 1000, true));
+        // ele.addEventListener('mousemove', debounce(handler1, 1000, true));
+        function handler(e) {
+            console.log(e);
+            console.log(this);
+            console.log(1);
+        }
+        function handler1(e) {
+            console.log(e);
+            console.log(this);
+            console.log(1);
+        }
+    </script>
 </html>
