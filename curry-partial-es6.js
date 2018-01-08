@@ -13,12 +13,22 @@ var partial =(fn, ...rest) =>
   parted = (...args) =>
     fn.length > args.length + rest.length
       ? (arg) => parted(...args, arg)
-      : fn(...rest.concat(args));
-      
+      : fn(...rest, ...args);
+
+var a = 6;
+var obj = {
+  a: 4,
+  fn2: function (a, b, c) {
+    console.log(this);
+    console.log(this.a, b, c);
+    return this.a + b + c;
+  }
+}
 function fn1(a, b, c) {
+  console.log(a, b, c);
   return a + b + c;
 }
-
-var partialFn1 = partial(fn1, 1);
+// obj.fn2(1, 2, 3)
+var partialFn1 = partial(obj.fn2, 1);
 
 partialFn1(2)(3);
