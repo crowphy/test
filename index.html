@@ -60,9 +60,10 @@
         Counter: <span id="counter"></span>
         <!-- <script src="generator.js"></script> -->
     </body>
-    <!-- <script src="jquery.js"></script> -->
+    <script src="jquery.js"></script>
     <script src="tail-call.js"></script>
     <script>
+        console.log($.Deferred());
         var ele = document.querySelector('.parent');
         ele.addEventListener('click', throttle(handler, 1000, true));
         // ele.addEventListener('mousemove', debounce(handler1, 1000, true));
