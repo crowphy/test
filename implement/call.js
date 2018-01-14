@@ -8,9 +8,9 @@
  * @param {any} ctx 
  */
 Function.prototype.myCall = function(ctx) {
-
   try {
-    ctx = Object(ctx) || window
+    ctx = ctx && Object(ctx) || window
+    console.log(ctx)
   } catch (error) {
     console.log(error)
     return;
