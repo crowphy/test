@@ -37,4 +37,4 @@ function hello(params, num) {
   console.log(this.greet, params, num);
   return 3;
 }
-hello.myCall(obj, 'hi', 2)
+hello.myCall(null, 'hi', 2)
