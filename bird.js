@@ -11,7 +11,7 @@ function Bird() {
             // console.log(actions);
             if(actions.length > 0) actions[0]();
         });
-        return this;   
+        return this; 
     }
     
     // Bird.eat = function() {
