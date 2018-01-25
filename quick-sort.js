@@ -19,6 +19,7 @@ function quickSort (arr) {
       right.push(item)
     }
   }
+  console.log(left, right)
   return quickSort(left).concat([q], quickSort(right))
 }
 const arr = [1, 5, 2, 4, 7, 3]
