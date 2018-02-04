@@ -7,40 +7,44 @@
         <!-- <link href="css/style.css" rel="stylesheet"> -->
         <style>
             .parent {
+                position: relative;
                 width: 320px;
                 border: 1px solid #f60;
-                height: 200px;
+                /* height: 200px; */
                 /*2.overflow  */
                 /* overflow: auto; */
             }
             .child {
-                width: 100px;
-                height: 50%;
-                margin-top: 10%;
-                padding-bottom: 10%;
-                border-bottom: 10% sloid #fff;
-                background: #444;
+                position: absolute;
+                width: 50%;
+                height: 50px;
+                /* margin-top: 10%; */
+                /* padding-bottom: 10%; */
+                /* border-bottom: 10% sloid #fff; */
+                /* background: #444; */
                 /* display: inline-block; */
             }
             .left {
                 background: #f60;
-                /* float: left; */
+                /* float: right; */
             }
             .center {
-                 margin: 0 auto;
+                 /* margin: 0 auto; */
             }
             .right {
                 /* float: right; */
             }
             /*3.:after  */
             .parent:after {
-                /* clear: both;
+                clear: both;
                 content: ''; 
-                display: block; */
+                display: block;
+                height: 0;
+                width: 0;
             }
             /*1.空元素  */
             .clear {
-                clear: both;
+                /* clear: both; */
                 /* width: 0;
                 height: 0; */
             }
@@ -50,15 +54,12 @@
     <!-- <script src="event-loop.js"></script> -->
     <!--二三列布局及清除浮动  -->
         <div class="parent" style="border: 1px solid #f60;">
-            <div class="left child"></div>
+            <div class="left child">A</div>
             <!-- <div class="child right"></div> -->
             <!--1.  -->
              <!-- <div class="clear"></div> -->
             <!-- <div class="child center"></div> -->
         </div>
-        <!-- <a href="https://ww.baidu.com">aaaa</a>
-        Counter: <span id="counter"></span>
-        <!-- <script src="generator.js"></script> -->
     </body>
     <script src="jquery.js"></script>
     <script src="tail-call.js"></script>
