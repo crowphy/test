@@ -53,30 +53,33 @@
     <body>
     <!-- <script src="event-loop.js"></script> -->
     <!--二三列布局及清除浮动  -->
-        <div class="parent" style="border: 1px solid #f60;">
-            <div class="left child">A</div>
+        <!-- <div class="parent" style="border: 1px solid #f60;"> -->
+            <!-- <div class="left child">A</div> -->
             <!-- <div class="child right"></div> -->
             <!--1.  -->
              <!-- <div class="clear"></div> -->
             <!-- <div class="child center"></div> -->
-        </div>
+        <!-- </div> -->
+        <div class="animation"></div>
     </body>
-    <script src="jquery.js"></script>
-    <script src="tail-call.js"></script>
+    
+    <!-- <script src="jquery.js"></script> -->
+    <!-- <script src="tail-call.js"></script> -->
+    <script src="imgAniamtion.js"></script>
     <script>
-        console.log($.Deferred());
-        var ele = document.querySelector('.parent');
-        ele.addEventListener('click', throttle(handler, 1000, true));
-        // ele.addEventListener('mousemove', debounce(handler1, 1000, true));
-        function handler(e) {
-            console.log(e);
-            console.log(this);
-            console.log(1);
-        }
-        function handler1(e) {
-            console.log(e);
-            console.log(this);
-            console.log(1);
-        }
+        // console.log($.Deferred());
+        // var ele = document.querySelector('.parent');
+        // ele.addEventListener('click', throttle(handler, 1000, true));
+        // // ele.addEventListener('mousemove', debounce(handler1, 1000, true));
+        // function handler(e) {
+        //     console.log(e);
+        //     console.log(this);
+        //     console.log(1);
+        // }
+        // function handler1(e) {
+        //     console.log(e);
+        //     console.log(this);
+        //     console.log(1);
+        // }
     </script>
 </html>

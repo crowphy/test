@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    ddd
+  </div>
+  <script>
+    function debounce(fn, delay) {
+      var pre = new Date().getTime();
+      return function(){
+        var now = new Date().getTime();
+        if (now - pre < delay) {
+          return;
+        }
+        var args = Array.prototype.slice.call(arguments);
+        fn.apply(this, args);
+      }
+    } 
+
+    var el = document.getElementById("app");
+    el.click(debounce(function(){console.log(111)}, 10000))
+  </script>
+</body>
+</html>
