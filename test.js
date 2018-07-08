@@ -1,3 +1,4 @@
+
 /*var timer = setTimeout(function() {
     console.log('1');
 }, 0);
@@ -776,8 +777,15 @@ bar(obj.getA); */
 // arr[0]>=0?arr.shift():arr[0]=1
 // console.log(arr);
 
-var a = new Array(100)
-a.map((i) => {
-    console.log(i);
-})
+// var a = new Array(100)
+// a.map((i) => {
+//     console.log(i);
+// })
 // console.log(a)
+
+setImmediate(() => {
+    console.log('2')
+})
+setTimeout(() => {
+    console.log('1')
+})
