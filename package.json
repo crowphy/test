@@ -5,6 +5,7 @@
   "main": "test.js",
   "dependencies": {
     "axios": "^0.16.2",
+    "hammer-touchemulator": "0.0.2",
     "iconv-lite": "^0.4.19",
     "koa": "^2.4.1",
     "node-fetch": "^1.7.2"

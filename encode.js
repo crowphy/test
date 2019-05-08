@@ -13,6 +13,7 @@ const http = require('http')
 const iconv = require('iconv-lite')
 const url = 'http://www.pingan.com/cms-tmplt/portalJsonpController.do?method=articleList&channelId=3601'
 let data
+
 function getData (url) {
   http.get(url, function (res) {
     console.log(res.on)

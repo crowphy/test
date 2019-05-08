@@ -48,7 +48,17 @@
                 /* width: 0;
                 height: 0; */
             }
+            .event {
+                width: 100px;
+                height: 100px;
+                background-color: bisque;
+                border: 1px solid #000;
+            }
         </style>
+        <script src="mouseToTouch.js"></script>
+        <script>
+            TouchEmulator();
+        </script>
     </head>
     <body>
     <!-- <script src="event-loop.js"></script> -->
@@ -57,15 +67,19 @@
             <!-- <div class="left child">A</div> -->
             <!-- <div class="child right"></div> -->
             <!--1.  -->
-             <!-- <div class="clear"></div> -->
+            <!-- <div class="clear"></div> -->
             <!-- <div class="child center"></div> -->
         <!-- </div> -->
-        <div class="animation"></div>
+        <!-- <div class="animation"></div> -->
+        <div class="events">
+            <div class="event touchstart"></div>
+            <div class="event touchmove"></div>
+            <div class="event touchend"></div>
+        </div>
     </body>
     
     <!-- <script src="jquery.js"></script> -->
     <!-- <script src="tail-call.js"></script> -->
-    <script src="imgAniamtion.js"></script>
     <script>
         // console.log($.Deferred());
         // var ele = document.querySelector('.parent');
@@ -81,5 +95,14 @@
         //     console.log(this);
         //     console.log(1);
         // }
+    </script>
+    <script>
+        function log(ev) {
+            console.log(ev);
+        }
+
+        document.body.addEventListener('touchstart', log, false);
+        document.body.addEventListener('touchmove', log, false);
+        document.body.addEventListener('touchend', log, false);
     </script>
 </html>
