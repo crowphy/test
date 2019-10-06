@@ -55,9 +55,30 @@
                 border: 1px solid #000;
             }
         </style>
-        <script src="mouseToTouch.js"></script>
+        <script src="https://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
+        <script src="node-module/dist/js/index.896f.js"></script>
         <script>
-            TouchEmulator();
+            $.ajax({
+                url: 'http://127.0.0.1:8081/test.bundle.js',
+                dataType: 'text',
+                success: function(data) {
+                    console.log('object');
+                    // console.log(data);
+                    var storiesOf = function() {
+                        return {}
+                    }
+                    var story = new Function('storiesOf', data);
+                    story(storiesOf)
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            })
+            var aa = '123'
+        </script>
+        <!-- <script src="mouseToTouch.js"></script> -->
+        <script>
+            // TouchEmulator();
         </script>
     </head>
     <body>
@@ -101,8 +122,8 @@
             console.log(ev);
         }
 
-        document.body.addEventListener('touchstart', log, false);
-        document.body.addEventListener('touchmove', log, false);
-        document.body.addEventListener('touchend', log, false);
+        // document.body.addEventListener('touchstart', log, false);
+        // document.body.addEventListener('touchmove', log, false);
+        // document.body.addEventListener('touchend', log, false);
     </script>
 </html>
