@@ -97,6 +97,9 @@
             <div class="event touchmove"></div>
             <div class="event touchend"></div>
         </div>
+        <div>
+            <canvas id="sharePreview" width="375" height="667" style="background: antiquewhite;"></canvas>
+        </div>
     </body>
     
     <!-- <script src="jquery.js"></script> -->
@@ -125,5 +128,30 @@
         // document.body.addEventListener('touchstart', log, false);
         // document.body.addEventListener('touchmove', log, false);
         // document.body.addEventListener('touchend', log, false);
+    </script>
+    <script>
+        var sharePreview = document.getElementById('sharePreview');
+        var ctx = sharePreview.getContext('2d');
+        function roundRect(ctx, x, y, w, h, r, color) {
+            // var min_size = Math.min(w, h);
+            // if (r > min_size / 2) {
+            //     r = min_size / 2;
+            // }
+            // // 开始绘制
+            // ctx.beginPath();
+            // ctx.moveTo(x + r, y);
+            // ctx.arcTo(x + w, y, x + w, y + h, r);
+            // ctx.arcTo(x + w, y + h, x, y + h, r);
+            // ctx.arcTo(x, y + h, x, y, r);
+            // ctx.arcTo(x, y, x + w, y, r);
+            // ctx.closePath();
+            ctx.rect(x, y, w, h);
+            ctx.fillStyle = color;
+            ctx.fill();
+        }
+        roundRect(ctx, 0, 0, 375, 200, '', '#000')
+        setTimeout(() => {
+            roundRect(ctx, 100, 0, 375, 100, '', '#fff')
+        }, 1000);
     </script>
 </html>

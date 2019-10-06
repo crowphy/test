@@ -9,22 +9,31 @@
  * @returns 
  */
 function debounce(fn, delay = 300, immediate = true) {
-  var timer, first = immediate, last;
-  return function(...args) {
-    var ctx = this;
-    clearTimeout(timer);
-    if (first) {
-      fn.apply(ctx, args);
-      first = false;
-      // delay 时间之后恢复立即执行
-      timer = setTimeout(() => {
-        first = immediate;
-      }, delay);
-    } else {
-      timer = setTimeout(() => {
-        first = immediate;
-        fn.apply(ctx, args);
-      }, delay)
+    var timer, first = immediate, last;
+    return function (...args) {
+        var ctx = this;
+        clearTimeout(timer);
+        if (first) {
+            fn.apply(ctx, args);
+            first = false;
+            // delay 时间之后恢复立即执行
+            timer = setTimeout(() => {
+                first = immediate;
+            }, delay);
+        } else {
+            timer = setTimeout(() => {
+                first = immediate;
+                fn.apply(ctx, args);
+            }, delay)
+        }
     }
-  }
+}
+function debounce(fn, delay = 300) {
+    var timer = null;
+    return function() {
+        if(timer) {
+            return
+        }
+        timer
+    }
 }
