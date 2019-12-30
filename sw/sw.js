@@ -7,8 +7,9 @@ self.addEventListener('install', evt => {
                 console.log('Opened cache------');
                 return cache.addAll([
                     '/',
-                    'test.js',
+                    '/test.js',
                     '/IMG_0138.JPG',
+                    '/iframe.html'
                 ]);
             })
     );

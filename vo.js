@@ -24,7 +24,7 @@
 (function () {
 
     console.log(typeof foo); // 函数指针
-    console.log(typeof bar); // undefined
+    console.log(typeof bar); // 函数指针
     function bar() {
         return 'bar';
     }
@@ -32,7 +32,7 @@
         bar = function () {
             return 'world';
         };
-    console.log(bar);
+    console.log(bar());
     function foo() {
         return 'hello';
     }
