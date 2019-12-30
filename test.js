@@ -783,9 +783,39 @@ bar(obj.getA); */
 // })
 // console.log(a)
 
-setImmediate(() => {
-    console.log('2')
-})
-setTimeout(() => {
-    console.log('1')
-})
+// setImmediate(() => {
+//     console.log('2')
+// })
+// setTimeout(() => {
+//     console.log('1')
+// })
+
+function parseUrl (url) {
+    var obj = URL.parse(url);
+
+    if(obj.search) {
+        obj.params = (function () {
+            var ret = {},
+                seg = obj.search.replace(/^\?/, '').split('&'),
+                len = seg.length, i = 0, s;
+            for (; i < len; i++) {
+                if (!seg[i]) {
+                    continue;
+                }
+                var pos = seg[i].indexOf('=');
+                
+                try{
+                    ret[seg[i].substr(0, pos)] = mod.encodeHtml(decodeURIComponent(seg[i].substr(pos + 1)));	 //过滤xss
+                }catch(e){}
+            }
+            return ret;
+        })();
+    } else {
+        obj.params = {};
+    }
+
+    return obj;
+}
+
+const params = parseUrl('https://h5.qzone.qq.com/bigVip/mentor?extend_info=code%253D30942887201577089388399429106r5X8%2526type%253D2%2526name%253D%25E3%2582%259E%2520%25E6%25AD%25A3%25E5%259C%25A8%25E7%25BC%2593%25E5%2586%25B299%2525&_wv=16777216&_proxy=1&_wv=16777216');
+console.log(params)
