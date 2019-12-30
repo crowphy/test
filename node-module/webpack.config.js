@@ -9,8 +9,8 @@ module.exports = {
     entry: {
         index: path.join(__dirname, './index.js')
     },
-    // mode: 'production',
-    mode: 'development',
+    mode: 'production',
+    // mode: 'development',
     devtool: 'cheap-module-souce-map',
     output: {
         path: path.join(__dirname, '/dist'),
