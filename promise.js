@@ -1,8 +1,10 @@
+// https://imweb.io/topic/5bbc264b6477d81e668cc930
+// https://juejin.im/post/5b83cb5ae51d4538cc3ec354
 /*
  * @Author: crowphy 
  * @Date: 2019-02-19 21:11:18 
  * @Last Modified by: crowphy
- * @Last Modified time: 2019-12-30 21:41:27
+ * @Last Modified time: 2020-01-02 00:51:15
  * promise的实现
  * promise的方法：
  * 静态方法：
@@ -81,67 +83,106 @@
  * @param {*} executor
  */
 function PromiseA (executor) {
-    var staus = 'pending';
-    var succCallbacks = [];
-    var failCallbacks = [];
+    var self = this;
+    self.status = 'pending';
+    self.succCallbacks = [];
+    self.failCallbacks = [];
 
     
-    PromiseA.resolve = function (data) {
-        if (status === 'pending') {
-            // for(var i = 0; i < succCallbacks.length; i++) {
-            //     if(typeof succCallbacks[i] === 'function') {
-            //         var res = succCallbacks[i](data);
-            //         if (res instanceof PromiseA) {
-                        
-            //         }
-            //     }
-            // }
-            if (data instanceof PromiseA) {
-                return data;
+    function resolve (data) {
+        self.data = data;
+        function run () {
+            if (self.status !== 'pending') {
+                return;
             }
-            if(data.then && typeof data.then === 'function') {
-                data.then();
-                return new PromiseA();
-            }
-
-            status = 'resolved';
-
-            if(typeof succCallbacks[0] === 'function') {
-                setTimeout(() => {
-                    var res = succCallbacks[0](data);
-                    if (!res instanceof PromiseA) {
-                        // PromiseA.resolve(res);
-                        return new PromiseA(function (resolve, reject) {
-                            resolve(res);
-                        });
+            var runSucc = function (val) {
+                while (self.succCallbacks.length) {
+                    var cb = self.succCallbacks.shift();
+                    if (typeof cb === 'function') {
+                        cb(val);
                     }
+                }
+            }
+            if (data instanceof PromiseA) {
+                data.then(function (val) {
+                    self.status = 'resolved';
+                    self.data = val;
+                    runSucc(self.data);
                 })
+            } else {
+                self.status = 'resolved';
+                runSucc(self.data);
             }
         }
-        return new PromiseA(function (resolve, reject) {
-            resolve();
-        });
+        setTimeout(run, 0);
     }
 
-    PromiseA.reject = function (data) {
+    function reject (reason) {
         
     }
 
-    PromiseA.prototype.then = function (resolveCb, rejectCb) {
-        
-            succCallbacks.push(resolveCb);
-            failCallbacks.push(rejectCb);
-    }
-    executor(PromiseA.resolve, PromiseA.reject);
+    executor(resolve, reject);
 }
 
+PromiseA.prototype.then = function (resolveCb, rejectCb) {
+    var self = this;
+    return new PromiseA(function (resolve, reject) {
+        if (self.status === 'pending') {
+            self.succCallbacks.push(function () {
+                setTimeout(() => {
+                    var res = resolveCb(self.data);
+                    if (res instanceof PromiseA) {
+                        res.then(resolve, reject);
+                    } else {
+                        resolve(res);
+                    }
+                }, 0);
+            })
+        }
+
+        if (self.status === 'resolved') {
+            setTimeout(() => {
+                var res = resolveCb(self.data);
+                if (res instanceof PromiseA) {
+                    res.then(resolve, reject);
+                } else {
+                    resolve(res);
+                }
+            }, 0);
+        }
+    })
+}
+
+PromiseA.resolve = function (data) {
+    if (data instanceof PromiseA) {
+        return data;
+    } else {
+        return new PromiseA(function (resolve) {
+            resolve(data);
+        })
+    }
+}
+
+var p0 = new PromiseA(function (resolve, reject) {
+    setTimeout(() => {
+        resolve('crowphy');
+    }, 2000);
+});
+
 var p = new PromiseA(function (resolve, reject) {
-    resolve('hello');
+    resolve(p0);
 });
 
 p.then(function (data) {
-    console.log(data);
-    return 'world';
+    console.log(data, ' world2');
+    return 'world2';
+}, function (reason) {
+    console.log(reason);
+})
+
+p.then(function (data) {
+    console.log(data, ' world');
+    return 'world3';
 }, function (reason) {
     console.log(reason);
 }).then(function (data) {
@@ -149,3 +190,9 @@ p.then(function (data) {
 }, function (reason) {
     console.log(reason);
 });
+
+var t = PromiseA.resolve('a');
+console.log(t instanceof PromiseA);
+t.then(function (data) {
+    console.log(data);
+})

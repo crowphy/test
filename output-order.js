@@ -2,7 +2,7 @@
 var p = new Promise((resolve, reject) => {
   setTimeout(() => {
     resolve()
-  })
+  }, 10)
   console.log(5)
 })
 p.then(() => {
@@ -29,4 +29,4 @@ p.then(() => {
 
 console.log(4)
 
-// 5 9 4 7 10 8 30 6 20 7 8
+// 5 9 4 7 10 8 30 6 20
