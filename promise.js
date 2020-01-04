@@ -4,7 +4,7 @@
  * @Author: crowphy 
  * @Date: 2019-02-19 21:11:18 
  * @Last Modified by: crowphy
- * @Last Modified time: 2020-01-02 00:51:15
+ * @Last Modified time: 2020-01-02 01:00:41
  * promise的实现
  * promise的方法：
  * 静态方法：
@@ -192,7 +192,13 @@ p.then(function (data) {
 });
 
 var t = PromiseA.resolve('a');
+var t2 = new Promise(function (resolve) {
+    resolve('a')
+})
 console.log(t instanceof PromiseA);
 t.then(function (data) {
+    console.log(data);
+})
+t2.then(function (data) {
     console.log(data);
 })
