@@ -15,7 +15,7 @@ function jsonParse (str) {
                 parseObject();
             case '"':
                 parseString();
-                
+                break;
             case ':':
                 parseString();
             case ',':
@@ -27,24 +27,23 @@ function jsonParse (str) {
             case 't':
                 parseString();
         }
-        
     }
 
     function parseString () {
-        console.log('parseString-begin')
+        let char = str.charAt(++index);
         let value = '';
-        char = str.charAt(++index);
-        while (char !== '"' && char !== '') {
-            console.log('index-', index);
+        while (char !== '"') {
             value += char;
-            char = str.charAt(++index);
+            index++;
+            char = str.charAt(index);
         }
+        // 已读取，指针移到下一步
+        index++;
         tokens.push({
             type: 'string',
             value: value
         });
-        return;
-        console.log('parseString-end')
+        console.log(tokens);
     }
 
     function parseObject () {
@@ -60,12 +59,12 @@ function jsonParse (str) {
     function parseArray () {
     
     }
-    debugger
     return tokens;
 
 }
 
-const jsonStr =  '"hello"' //'{"a":1,"b":true,"c":false,"foo":null,"bar":[1,2,3]}';
+const jsonStr =  '"hello-kitty"' //'{"a":1,"b":true,"c":false,"foo":null,"bar":[1,2,3]}';
 
-console.log(jsonParse(jsonStr));
+console.log();
+jsonParse(jsonStr)
 
