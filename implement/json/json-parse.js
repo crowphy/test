@@ -1,5 +1,7 @@
 
 // https://segmentfault.com/a/1190000010998941
+// https://github.com/douglascrockford/JSON-js/blob/master/json2.js#L373
+
 
 function jsonParse (str) {
     let index = 0;
