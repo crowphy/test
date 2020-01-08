@@ -10,29 +10,84 @@ function jsonParse (str) {
         char = str.charAt(index);
         switch (char) {
             case '{':
-                parseObject();
+                tokens.push({
+                    type: 'object-begin',
+                    value: '{'
+                });
+                index++;
+                break;
+            case '}':
+                tokens.push({
+                    type: 'object-end',
+                    value: '}'
+                });
+                index++;
+                break;
             case '[':
-                parseObject();
+                tokens.push({
+                    type: 'array-begin',
+                    value: '['
+                });
+                index++;
+                break;
+            case ']':
+                tokens.push({
+                    type: 'array-end',
+                    value: ']'
+                });
+                index++;
+                break;
             case '"':
                 parseString();
                 break;
             case ':':
-                parseString();
+                tokens.push({
+                    type: 'colon',
+                    value: ':'
+                });
+                index++;
+                break;
             case ',':
-                parseString();
+                tokens.push({
+                    type: 'comma',
+                    value: ','
+                });
+                index++;
+                break;
+            case ' ':
+                index++;
+                break;
             case 'n':
-                parseString();
+                parseNull();
+                break;
             case 'f':
-                parseString();
+                parseFalse();
+                break;
             case 't':
-                parseString();
+                parseTrue();
+                break;
+            default:
+                debugger
+                if (isDigit (char)) {
+                    parseNumber();
+                } else {
+                    debugger
+                    throw 'illegal char';
+                }
         }
+    }
+
+    function isDigit (char) {
+        if (char === '-' || /\d/.test(char)) {
+            return true;
+        }
+        return false;
     }
 
     function parseString () {
         let char = str.charAt(++index);
         let value = '';
-        while (char !== '"') {
+        while (char && char !== '"') {
             value += char;
             index++;
             char = str.charAt(index);
@@ -43,28 +98,64 @@ function jsonParse (str) {
             type: 'string',
             value: value
         });
-        console.log(tokens);
     }
 
-    function parseObject () {
-        let result = {};
-        let key = '';
-        let char = str.charAt(index);
-        while (char !== '}') {
-            key += char;
-            char = str.charAt(++index);
+    function next(length) {
+        let start = index;
+        let word = '';
+        for (let num = start; num < index + length; num++) {
+            word += str.charAt(num);
+        }
+        debugger
+        return word;
+    }
+
+    function parseFalse () {
+        if (next(5) === 'false') {
+            tokens.push({
+                type: 'boolean',
+                value: false
+            });
+            index = index + 5;
         }
     }
-    
-    function parseArray () {
-    
+
+    function parseTrue () {
+        if (next(4) === 'true') {
+            tokens.push({
+                type: 'boolean',
+                value: true
+            });
+            index = index + 4;
+        }
+    }
+
+    function parseNull () {
+        if (next(4) === 'null') {
+            tokens.push({
+                type: 'null',
+                value: null
+            });
+            index = index + 4;
+        }
+    }
+
+    function parseNumber () {
+        let num = '';
+        let char = str.charAt(index);
+        while (isDigit(char)) {
+            num += char;
+            index++;
+            char = str.charAt(index);
+        }
+        tokens.push({
+            type: 'number',
+            value: Number(num)
+        });
     }
     return tokens;
-
 }
 
-const jsonStr =  '"hello-kitty"' //'{"a":1,"b":true,"c":false,"foo":null,"bar":[1,2,3]}';
+const jsonStr = '{"b":true,"c":false,"foo":null,"obj":{"baz": ["hello"]}"bar":[3]}';
 
-console.log();
-jsonParse(jsonStr)
-
+console.log(jsonParse(jsonStr));
