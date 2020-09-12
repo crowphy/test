@@ -9,7 +9,7 @@
     "hammer-touchemulator": "0.0.2",
     "iconv-lite": "^0.4.19",
     "koa": "^2.4.1",
-    "node-fetch": "^1.7.2"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
