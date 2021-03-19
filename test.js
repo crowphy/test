@@ -790,32 +790,53 @@ bar(obj.getA); */
 //     console.log('1')
 // })
 
-function parseUrl (url) {
-    var obj = URL.parse(url);
+// function parseUrl (url) {
+//     var obj = URL.parse(url);
 
-    if(obj.search) {
-        obj.params = (function () {
-            var ret = {},
-                seg = obj.search.replace(/^\?/, '').split('&'),
-                len = seg.length, i = 0, s;
-            for (; i < len; i++) {
-                if (!seg[i]) {
-                    continue;
-                }
-                var pos = seg[i].indexOf('=');
+//     if(obj.search) {
+//         obj.params = (function () {
+//             var ret = {},
+//                 seg = obj.search.replace(/^\?/, '').split('&'),
+//                 len = seg.length, i = 0, s;
+//             for (; i < len; i++) {
+//                 if (!seg[i]) {
+//                     continue;
+//                 }
+//                 var pos = seg[i].indexOf('=');
                 
-                try{
-                    ret[seg[i].substr(0, pos)] = mod.encodeHtml(decodeURIComponent(seg[i].substr(pos + 1)));	 //过滤xss
-                }catch(e){}
-            }
-            return ret;
-        })();
-    } else {
-        obj.params = {};
+//                 try{
+//                     ret[seg[i].substr(0, pos)] = mod.encodeHtml(decodeURIComponent(seg[i].substr(pos + 1)));	 //过滤xss
+//                 }catch(e){}
+//             }
+//             return ret;
+//         })();
+//     } else {
+//         obj.params = {};
+//     }
+
+//     return obj;
+// }
+
+// const params = parseUrl('https://h5.qzone.qq.com/bigVip/mentor?extend_info=code%253D30942887201577089388399429106r5X8%2526type%253D2%2526name%253D%25E3%2582%259E%2520%25E6%25AD%25A3%25E5%259C%25A8%25E7%25BC%2593%25E5%2586%25B299%2525&_wv=16777216&_proxy=1&_wv=16777216');
+// console.log(params)
+
+const URL = require('url');
+const result = URL.parse('http://kubernetes.oa.com/v4/projects/prj8jfps/workloads/cls-991r4bpx/ns-prj8jfps-1208627-test/StatefulSet/live-master');
+// console.log('result:', result);
+// console.log('result:', result.pathname.split('/')[8]);
+
+const stkeTypeToCamelCase = (typeIn) => {
+    // HACK STKE前端路由是区分type这个字段的大小写的，但后端目前都是小写。以防万一，对前端URL的相关字段做转换
+    console.log('typeIn:', typeIn);
+    switch (typeIn) {
+        case 'deployment':
+            return 'Deployment';
+        case 'statefulset':
+            return 'StatefulSetPlus';
+        case 'statefulsetplus':
+            return 'StatefulSetPlus';
+        default:
+            throw Error('unknown type when convert URL. internal error.');
     }
-
-    return obj;
-}
-
-const params = parseUrl('https://h5.qzone.qq.com/bigVip/mentor?extend_info=code%253D30942887201577089388399429106r5X8%2526type%253D2%2526name%253D%25E3%2582%259E%2520%25E6%25AD%25A3%25E5%259C%25A8%25E7%25BC%2593%25E5%2586%25B299%2525&_wv=16777216&_proxy=1&_wv=16777216');
-console.log(params)
+};
+console.log('type:', stkeTypeToCamelCase(result.pathname.split('/')[7].toLowerCase()));
