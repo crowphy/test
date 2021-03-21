@@ -840,3 +840,53 @@ const stkeTypeToCamelCase = (typeIn) => {
     }
 };
 console.log('type:', stkeTypeToCamelCase(result.pathname.split('/')[7].toLowerCase()));
+// var numWays = function(n) {
+
+//     var a = 1, b = 1, sum;
+//     for(var i = 0; i < n; i++){
+//         sum = (a + b) % 1000000007;
+//         a = b;
+//         b = sum;
+//     }
+//     return a;
+// };
+// console.log(numWays(100))
+
+function mergeSort(arr) {  //采用自上而下的递归方法
+    var len = arr.length;
+    if(len < 2) {
+        return arr;
+    }
+    var middle = Math.floor(len / 2),
+        left = arr.slice(0, middle),
+        right = arr.slice(middle);
+    var leftArr = mergeSort(left);
+    var rightArr = mergeSort(right)
+    // console.log(leftArr,rightArr)
+    return merge(leftArr,rightArr);
+}
+
+function merge(left, right)
+{
+    var result = [];
+    console.time('归并排序耗时');
+    while (left.length && right.length) {
+        console.log(left, right)
+        if (left[0] <= right[0]) {
+            result.push(left.shift());
+        } else {
+            result.push(right.shift());
+        }
+    }
+
+    while (left.length)
+        result.push(left.shift());
+
+    while (right.length)
+        result.push(right.shift());
+    console.timeEnd('归并排序耗时');
+    return result;
+}
+var arr=[44,38,5, 3];
+console.log(mergeSort(arr));
+

@@ -1,26 +1,27 @@
 
-const WEIGHT = 10;
-const value = [6, 4, 5, 3, 6];
-const weight = [4, 5, 6, 2, 2];
+const LIMIT = 4;
+const VALUES = [6, 4, 5, 3, 6];
+const WEIGHTS = [4, 5, 6, 2, 2];
 
-function maxValue(weightLimit, values, weights) {
+function maxValue(limit, values, weights) {
   
-  const currentMax = [],
-    num = values.length
-  for (let i = 0; i <= weightLimit; i++) {
-    // 限重i情况下
-    currentMax[i] = [];
+  const curMax = [];
+  const num = values.length;
+  for (let i = 0; i <= limit; i++) {
+    curMax[i] = [];
+    console.log('-------')
     for (let j = 0; j < num; j++) {
-      // 如果第j个的重量大于限重i，返回上一次的最大值
+      // 第j个的重量超过限重i
+      console.log(weights[j], i)
       if (weights[j] > i) {
-        currentMax[i][j] = currentMax[i][j - 1] || 0;
+        curMax[i][j] = curMax[i][j - 1] || 0;
+        console.log('v', curMax[i][j])
         continue;
       }
-      // 
-      currentMax[i][j] = Math.max(values[j] + (currentMax[i - weights[j]][j - 1] || 0), currentMax[i][j - 1] || 0);
+      curMax[i][j] = Math.max(values[j] + (curMax[i - weights[j]][j - 1] || 0), curMax[i][j - 1] || 0);
     }
 
   }
-  return currentMax[weightLimit][num - 1]
+  return curMax[limit][num - 1]
 }
-console.log(maxValue(WEIGHT, value, weight))
+console.log(maxValue(LIMIT, VALUES, WEIGHTS))
