@@ -1,3 +1,12 @@
+/*
+ * @Author: crowphywu
+ * @Date: 2021-03-22 10:56:07
+ * @LastEditors: crowphywu
+ * @LastEditTime: 2021-03-22 11:11:46
+ * @Description: 
+ */
+
+
 // 最大得分，SCORES为每秒会出现的分数，STATES为怪兽的状态1代表醒着
 // 怪兽醒着不能得分，SLEEP_COUNT代表使怪兽进入睡眠的技能次数
 // 求最大能得多少分

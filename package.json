@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
+    "node-uuid": "^1.4.8",
     "recast": "^0.18.5",
     "webpack": "^4.39.1"
   },

@@ -17,4 +17,5 @@ function fn1(a, b, c) {
 
 var curryFn1 = curry(fn1);
 
-curryFn1(1)(2)(3);
+var res = curryFn1(1)(2)(3);
+console.log(res);

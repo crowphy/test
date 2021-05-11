@@ -9,10 +9,10 @@
  */
 Function.prototype.myCall = function(ctx) {
   try {
-    ctx = ctx && Object(ctx) || window
-    console.log(ctx)
+    ctx = ctx && Object(ctx) || global;
+    // console.log(ctx)
   } catch (error) {
-    console.log(error)
+    // console.log(error)
     return;
   }
   ctx.fn = this;
@@ -21,7 +21,7 @@ Function.prototype.myCall = function(ctx) {
     // 此处必须要保留arguments[i]的原始字符串形式，否则eval执行会报错
     args.push('arguments[' + i + ']');
   }
-  
+  // 使用eval使得this与ctx解绑
   var result = eval('ctx.fn(' + args + ')');
   ctx.fn = null;
   return result;
@@ -33,8 +33,9 @@ var obj = {
 }
 
 function hello(params, num) {
-  console.log(typeof num)
+  // console.log(typeof num)
   console.log(this.greet, params, num);
   return 3;
 }
-hello.myCall(null, 'hi', 2)
+var res = hello.myCall(obj, 'hi', 2);
+console.log(res);

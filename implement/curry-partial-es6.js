@@ -19,16 +19,17 @@ var a = 6;
 var obj = {
   a: 4,
   fn2: function (a, b, c) {
-    console.log(this);
-    console.log(this.a, b, c);
+    // console.log(this);
+    // console.log(this.a, b, c);
     return this.a + b + c;
   }
 }
 function fn1(a, b, c) {
-  console.log(a, b, c);
+  // console.log(a, b, c);
   return a + b + c;
 }
 // obj.fn2(1, 2, 3)
 var partialFn1 = partial(obj.fn2, 1);
 
-partialFn1(2)(3);
+const res = partialFn1(2)(3);
+console.log(res);
